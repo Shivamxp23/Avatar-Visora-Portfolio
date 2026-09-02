@@ -56,32 +56,32 @@ ul {
 @font-face {
   font-family: "Neue Montreal";
   font-weight: 200;
-  src: url("/assets/font/PPNeueMontreal-Thin.woff2") format("woff2");
+  src: url("../font/PPNeueMontreal-Thin.woff2") format("woff2");
 }
 @font-face {
   font-family: "Neue Montreal";
   font-weight: 400;
-  src: url("/assets/font/PPNeueMontreal-Book.woff2") format("woff2");
+  src: url("../font/PPNeueMontreal-Book.woff2") format("woff2");
 }
 @font-face {
   font-family: "Neue Montreal";
   font-weight: 600;
-  src: url("/assets/font/PPNeueMontreal-SemiBold.woff2") format("woff2");
+  src: url("../font/PPNeueMontreal-SemiBold.woff2") format("woff2");
 }
 @font-face {
   font-family: "Neue Montreal Mono";
   font-weight: 200;
-  src: url("/assets/font/PPNeueMontrealMono-Thin.woff2") format("woff2");
+  src: url("../font/PPNeueMontrealMono-Thin.woff2") format("woff2");
 }
 @font-face {
   font-family: "Neue Montreal Mono";
   font-weight: 400;
-  src: url("/assets/font/PPNeueMontrealMono-Book.woff2") format("woff2");
+  src: url("../font/PPNeueMontrealMono-Book.woff2") format("woff2");
 }
 @font-face {
   font-family: "Neue Montreal Mono";
   font-weight: 600;
-  src: url("/assets/font/PPNeueMontrealMono-SemiBold.woff2") format("woff2");
+  src: url("../font/PPNeueMontrealMono-SemiBold.woff2") format("woff2");
 }
 html,
 body {
