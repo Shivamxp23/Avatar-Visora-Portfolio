@@ -29406,8 +29406,6 @@
             "/projects/",
             "/info/",
             "/contact/",
-            "/faq/",
-            "/copycats/",
           ],
           currentPath: null,
           init() {
@@ -29417,8 +29415,6 @@
                 "/projects/": document.querySelector('[data-page="projects"]'),
                 "/info/": document.querySelector('[data-page="info"]'),
                 "/contact/": document.querySelector('[data-page="contact"]'),
-                "/faq/": document.querySelector('[data-page="faq"]'),
-                "/copycats/": document.querySelector('[data-page="copycats"]'),
               });
             const t = window.matchMedia("(prefers-color-scheme: dark)");
             (this.theme = t.matches ? "dark" : "light"),
