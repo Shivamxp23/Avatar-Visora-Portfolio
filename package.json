@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "Portfolio of Avatar Visora - Designer & Developer",
-  "main": "server.js",
   "scripts": {
     "dev": "node server.js",
-    "start": "node server.js",
-    "build": "echo \"Ready for Vercel deployment\""
+    "start": "node server.js"
   },
   "keywords": ["portfolio", "threejs", "alpinejs", "webgl"],
   "author": "Avatar Visora",
