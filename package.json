@@ -2,12 +2,17 @@
   "name": "avatar-visora-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio of Avatar Visora - Designer & Developer",
+  "description": "Portfolio of Avatar Visora - Marketing Manager",
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js"
   },
-  "keywords": ["portfolio", "threejs", "alpinejs", "webgl"],
+  "keywords": [
+    "portfolio",
+    "threejs",
+    "alpinejs",
+    "webgl"
+  ],
   "author": "Avatar Visora",
   "license": "MIT"
 }
