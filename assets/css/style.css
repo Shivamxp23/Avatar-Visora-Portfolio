@@ -445,19 +445,12 @@ body.is-monospaced {
   position: absolute;
   right: calc(var(--pad) * 2);
   bottom: calc(var(--pad) * 2);
-  text-align: right;
   white-space: nowrap;
 }
-.info_item + .info_item {
-  margin-top: 30px;
-}
-.info_content {
+.info_aboutme {
   line-height: 1.5;
 }
-.info_content .is-light {
-  font-weight: 400;
-}
-.info_desc span {
+.info_aboutme span {
   display: block;
 }
 .contact {
