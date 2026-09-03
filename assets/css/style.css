@@ -453,6 +453,17 @@ body.is-monospaced {
 .info_aboutme span {
   display: block;
 }
+.info_location {
+  margin-top: 1.5em;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.info_location span {
+  display: block;
+}
+.is-light {
+  font-weight: 400;
+}
 .contact {
   position: absolute;
   right: calc(var(--pad) * 2);
