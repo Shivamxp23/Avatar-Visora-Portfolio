@@ -2,7 +2,7 @@
   "name": "avatar-visora-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio of Avatar Visora - Marketing Manager",
+  "description": "Portfolio of Avatar Visora - Viral Marketing",
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js"

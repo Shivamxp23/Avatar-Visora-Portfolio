@@ -457,6 +457,9 @@ body.is-monospaced {
 .info_content .is-light {
   font-weight: 400;
 }
+.info_desc span {
+  display: block;
+}
 .contact {
   position: absolute;
   right: calc(var(--pad) * 2);
