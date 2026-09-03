@@ -42,15 +42,15 @@ ul {
   list-style: none;
 }
 :root {
-  --c-bg: hsl(0, 0%, 90%);
-  --c-text: hsl(0, 0%, 10%);
+  --c-bg: hsl(42, 30%, 94%);
+  --c-text: hsl(153, 53%, 16%);
   --pad: max(20px, 4vmin);
   --fs-text: 12px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-bg: hsl(0, 0%, 5%);
-    --c-text: hsl(0, 0%, 95%);
+    --c-bg: hsl(153, 53%, 13%);
+    --c-text: hsl(42, 30%, 94%);
   }
 }
 @font-face {
@@ -111,9 +111,9 @@ body.is-monospaced {
   height: 100%;
   overflow: hidden;
   background-color: var(--c-bg);
-  color: #fff;
+  color: var(--c-text);
   white-space: nowrap;
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: 0.9s;
   transition-timing-function: cubic-bezier(0.1, 0.4, 0.2, 1);
 }
@@ -185,13 +185,13 @@ body.is-monospaced {
   right: var(--pad);
   top: var(--pad);
   bottom: var(--pad);
-  mix-blend-mode: difference;
   pointer-events: none;
 }
 .frame_line {
   position: absolute;
-  background-color: #fff;
-  opacity: 0.5;
+  background-color: var(--c-text);
+  opacity: 0.35;
+  transition: background-color 0.9s cubic-bezier(0.1, 0.4, 0.2, 1);
 }
 .frame_line-left {
   left: 0;
@@ -225,10 +225,11 @@ body.is-monospaced {
   transform-origin: left bottom;
   transform: rotate(-90deg);
   white-space: nowrap;
-  mix-blend-mode: difference;
+  color: var(--c-text);
   display: flex;
   column-gap: 15px;
   cursor: pointer;
+  transition: color 0.9s cubic-bezier(0.1, 0.4, 0.2, 1);
 }
 .theme_colors {
   display: flex;
@@ -252,8 +253,9 @@ body.is-monospaced {
   left: var(--pad);
   bottom: calc(var(--pad) * 0.5 - 0.5em);
   font-size: 80%;
-  opacity: 0.5;
-  mix-blend-mode: difference;
+  opacity: 0.6;
+  color: var(--c-text);
+  transition: color 0.9s cubic-bezier(0.1, 0.4, 0.2, 1);
 }
 @media not all and (min-width: 640px) {
   #Copyright {
@@ -268,7 +270,8 @@ body.is-monospaced {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  mix-blend-mode: difference;
+  color: var(--c-text);
+  transition: color 0.9s cubic-bezier(0.1, 0.4, 0.2, 1);
 }
 .content_inner {
   position: relative;
@@ -289,7 +292,8 @@ body.is-monospaced {
   z-index: 10;
   left: calc(var(--pad) * 2);
   top: calc(var(--pad) * 2);
-  mix-blend-mode: difference;
+  color: var(--c-text);
+  transition: color 0.9s cubic-bezier(0.1, 0.4, 0.2, 1);
 }
 .siteHeader_title {
   margin: -0.1em 0 0 -0.04em;
