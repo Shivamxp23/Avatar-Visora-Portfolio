@@ -1,58 +1,33 @@
-# Avatar Visora — Portfolio
+# Avataar Visora Portfolio
 
-A WebGL-powered interactive portfolio website built with Vanilla JavaScript, Three.js, and Alpine.js.
+A high-performance modern creative agency and portfolio website powered by React.
 
-## 🚀 Deploying to Vercel
+## How to Run
 
-This repository is pre-configured and 100% Vercel-ready.
-
-### Option 1: Deploy via Vercel Dashboard (Recommended)
-1. Push this repository to GitHub / GitLab / Bitbucket.
-2. Go to [vercel.com](https://vercel.com) and click **"Add New Project"**.
-3. Import this repository.
-4. Keep the default settings (Framework Preset: *Other*, Root Directory: `./`).
-5. Click **"Deploy"**.
-
-### Option 2: Deploy using Vercel CLI
+### Option 1: npm (Recommended)
 ```bash
-# Install Vercel CLI globally (if not already installed)
-npm i -g vercel
-
-# Deploy to preview
-vercel
-
-# Deploy to production
-vercel --prod
+npm start
 ```
-
----
-
-## 💻 Local Development
-
-Run the local server:
+or
 ```bash
 npm run dev
-# or
+```
+
+### Option 2: Node directly
+```bash
 node server.js
 ```
 
-Open your browser at `http://localhost:3000`.
+### Option 3: Double-click launcher
+Double-click `start.bat` on Windows.
 
 ---
 
-## 📁 Project Structure
+The local server starts on **[http://localhost:3000](http://localhost:3000)**.
 
-```
-├── assets/
-│   ├── css/          # Stylesheets (style.css)
-│   ├── font/         # PP Neue Montreal webfonts
-│   ├── js/           # WebGL and interaction logic (main.js)
-│   ├── texture/      # Grain and blur textures
-│   ├── favicon.png   # Favicon asset
-│   └── share-image.png # Open Graph social preview
-├── index.html        # Main SPA HTML entrypoint
-├── package.json      # Project metadata & npm scripts
-├── server.js         # Lightweight local dev server
-├── vercel.json       # Vercel SPA routing, rewrites & caching rules
-└── robots.txt        # Search engine crawler permissions
-```
+## Features
+- **SPA Routing**: Full support for client-side routing (`/`, `/home-gallery`, `/home-loop`, `/home-spiral`, `/studio`, `/insights`, `/contact`, `/projects/*`).
+- **Interactive Themes**: Instant Dark / Light / System theme toggles.
+- **Multiple Layout Views**: List view, Gallery view, Loop view, Spiral view.
+- **Project Detail Pages**: High-resolution showcase cards and individual case study presentations.
+- **Zero Heavy Dependencies**: Runs directly with modern Node.js using built-in standard libraries.
