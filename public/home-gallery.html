@@ -14,7 +14,7 @@
 
 	<meta name="generator" content="Framer 74b9e1d">
 
-	<title>Avataar Visora Creative Agency</title>
+	<title>Avataar Visora</title>
 
     <meta name="description" content="Avataar Visora is a bold and minimal creative agency and portfolio Framer template designed for studios, designers, art directors, and creatives who want to present their work with clarity and personality. ">
 
@@ -32,7 +32,7 @@
 
     <meta property="og:type" content="website">
 
-    <meta property="og:title" content="Avataar Visora Creative Agency">
+    <meta property="og:title" content="Avataar Visora">
 
     <meta property="og:description" content="Avataar Visora is a bold and minimal creative agency and portfolio Framer template designed for studios, designers, art directors, and creatives who want to present their work with clarity and personality. ">
 
@@ -42,7 +42,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta name="twitter:title" content="Avataar Visora Creative Agency">
+    <meta name="twitter:title" content="Avataar Visora">
 
     <meta name="twitter:description" content="Avataar Visora is a bold and minimal creative agency and portfolio Framer template designed for studios, designers, art directors, and creatives who want to present their work with clarity and personality. ">
 
@@ -939,6 +939,7 @@ audio {
 <script id="avataar-visora-brand-guard">
 (function() {
   function enforceBrand() {
+    if (document.title !== 'Avataar Visora') document.title = 'Avataar Visora';
     const containers = document.querySelectorAll('.framer-t022ox, [data-framer-name="Logo Container"]');
     containers.forEach(container => {
       const link = container.querySelector('a');
