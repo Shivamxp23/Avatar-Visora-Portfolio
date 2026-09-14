@@ -73,10 +73,10 @@ const server = http.createServer((req, res) => {
   // Explicit route matching
   if (cleanPath === '/' || cleanPath === '/index.html') {
     filePath = path.join(__dirname, 'public', 'index.html');
-  } else if (cleanPath === '/home-gallery') {
-    filePath = path.join(__dirname, 'public', 'home-gallery.html');
-  } else if (cleanPath === '/home-loop') {
-    filePath = path.join(__dirname, 'public', 'home-loop.html');
+  } else if (cleanPath === '/home-gallery' || cleanPath === '/home-loop' || cleanPath === '/home-spiral') {
+    res.writeHead(302, { Location: '/' });
+    res.end();
+    return;
   } else {
     // Check if the requested file exists directly
     const directPath = path.join(__dirname, pathname);

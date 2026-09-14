@@ -14,6 +14,22 @@ a[href*="blackline"], a[href*="studio-24"], a[href*="studio24"], a[href*="new-da
   margin: 0 !important;
   padding: 0 !important;
 }
+.framer-na2vlg-container,
+.framer-F2P6b,
+[data-framer-name="Main Page View Toggle"],
+.framer-axlm9o,
+.framer-1poz0kk,
+.framer-5fglbp {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
 </style>
 <script id="removed-projects-purger">
 (function() {
