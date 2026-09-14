@@ -104,7 +104,7 @@ const Variants = motion.create(React.Fragment);
 const getProps = ({ a, b, c, d, height, id, width, ...props }) => {
   return {
     ...props,
-    iLm7yzzbn: a ?? props.iLm7yzzbn ?? "Loop",
+    iLm7yzzbn: a ?? props.iLm7yzzbn ?? "Avataar Visora",
     QzeYYZ4xt: b ?? props.QzeYYZ4xt ?? "Brave",
     SveIgQnV4: d ?? props.SveIgQnV4 ?? "sharp",
     variant:
@@ -265,7 +265,7 @@ const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
                     className: "framer-styles-preset-1o5m3vt",
                     "data-styles-preset": "pTInn5AJN",
                     dir: "auto",
-                    children: "Loop",
+                    children: "Avataar Visora",
                   }),
                 }),
                 className: "framer-4l5no3",
@@ -290,7 +290,7 @@ const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
                     className: "framer-styles-preset-1o5m3vt",
                     "data-styles-preset": "pTInn5AJN",
                     dir: "auto",
-                    children: "Loop",
+                    children: "Avataar Visora",
                   }),
                 }),
                 className: "framer-1uob31e",
@@ -465,7 +465,7 @@ const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
                     className: "framer-styles-preset-1o5m3vt",
                     "data-styles-preset": "pTInn5AJN",
                     dir: "auto",
-                    children: "Loop",
+                    children: "Avataar Visora",
                   }),
                 }),
                 className: "framer-1h0hdp3",
@@ -520,7 +520,7 @@ addPropertyControls(FramerBhI04XdHE, {
     type: ControlType.Enum,
   },
   iLm7yzzbn: {
-    defaultValue: "Loop",
+    defaultValue: "Avataar Visora",
     displayTextArea: false,
     title: "A",
     type: ControlType.String,

@@ -198,10 +198,7 @@ const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
   const onAppear1svmux2 = activeVariantCallback(async (...args) => {
     await delay(() => setVariant("xcNNXEFG8", true), 2e3);
   });
-  useOnVariantChange(baseVariant, {
-    default: onAppear1pj0vac,
-    Pqfj1XhI1: onAppear1svmux2,
-  });
+  useOnVariantChange(baseVariant, {});
   const sharedStyleClassNames = [sharedStyle.className];
   const scopingClassNames = cx(serializationHash, ...sharedStyleClassNames);
   return /*#__PURE__*/ _jsx(LayoutGroup, {
@@ -247,19 +244,22 @@ const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
                 __fromCanvasComponent: true,
                 children: /*#__PURE__*/ _jsx(React.Fragment, {
                   children: /*#__PURE__*/ _jsx(motion.p, {
-                    className: "framer-styles-preset-1qlraow",
+                    className: "framer-styles-preset-1qlraow avataar-visora-logo-text",
                     "data-styles-preset": "W_eQrxgKo",
                     dir: "auto",
                     style: {
                       "--framer-text-color":
                         "var(--extracted-r6o4lv, var(--variable-reference-vFsAmYfXc-oYm0CFyt_))",
+                      fontFamily: '"Bebas Neue", sans-serif',
+                      fontSize: "30px",
+                      letterSpacing: "0.08em",
+                      whiteSpace: "nowrap"
                     },
-                    children: "L",
+                    children: "AVATAAR VISORA",
                   }),
                 }),
                 className: "framer-1d9mkxu",
                 "data-framer-cursor": BEFIdobR6,
-                effect: textEffect,
                 fonts: ["Inter"],
                 layoutDependency: layoutDependency,
                 layoutId: "us6WWADJ1",
@@ -268,229 +268,7 @@ const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
                     "var(--variable-reference-vFsAmYfXc-oYm0CFyt_)",
                   "--framer-paragraph-spacing": "24px",
                   "--variable-reference-vFsAmYfXc-oYm0CFyt_": vFsAmYfXc,
-                },
-                verticalAlignment: "top",
-                withExternalLayout: true,
-              }),
-              /*#__PURE__*/ _jsxs(motion.div, {
-                className: "framer-12ufcet",
-                "data-framer-name": "Container",
-                layoutDependency: layoutDependency,
-                layoutId: "ZZqXHOYBQ",
-                children: [
-                  /*#__PURE__*/ _jsx(RichText, {
-                    __fromCanvasComponent: true,
-                    children: /*#__PURE__*/ _jsx(React.Fragment, {
-                      children: /*#__PURE__*/ _jsx(motion.p, {
-                        className: "framer-styles-preset-1qlraow",
-                        "data-styles-preset": "W_eQrxgKo",
-                        dir: "auto",
-                        style: {
-                          "--framer-text-color":
-                            "var(--extracted-r6o4lv, var(--variable-reference-vFsAmYfXc-oYm0CFyt_))",
-                        },
-                        children: "o",
-                      }),
-                    }),
-                    className: "framer-1g95xjm",
-                    "data-framer-cursor": BEFIdobR6,
-                    "data-framer-name": "Placeholder",
-                    effect: textEffect1,
-                    fonts: ["Inter"],
-                    layoutDependency: layoutDependency,
-                    layoutId: "H0z8YcdeR",
-                    style: {
-                      "--extracted-r6o4lv":
-                        "var(--variable-reference-vFsAmYfXc-oYm0CFyt_)",
-                      "--framer-paragraph-spacing": "24px",
-                      "--variable-reference-vFsAmYfXc-oYm0CFyt_": vFsAmYfXc,
-                      opacity: 0,
-                    },
-                    verticalAlignment: "top",
-                    withExternalLayout: true,
-                  }),
-                  /*#__PURE__*/ _jsx(RichText, {
-                    __fromCanvasComponent: true,
-                    children: /*#__PURE__*/ _jsx(React.Fragment, {
-                      children: /*#__PURE__*/ _jsx(motion.p, {
-                        className: "framer-styles-preset-1qlraow",
-                        "data-styles-preset": "W_eQrxgKo",
-                        dir: "auto",
-                        style: {
-                          "--framer-text-color":
-                            "var(--extracted-r6o4lv, var(--variable-reference-vFsAmYfXc-oYm0CFyt_))",
-                        },
-                        children: "o",
-                      }),
-                    }),
-                    className: "framer-qh926d",
-                    "data-framer-cursor": BEFIdobR6,
-                    effect: textEffect2,
-                    fonts: ["Inter"],
-                    layoutDependency: layoutDependency,
-                    layoutId: "shBsBrzU6",
-                    style: {
-                      "--extracted-r6o4lv":
-                        "var(--variable-reference-vFsAmYfXc-oYm0CFyt_)",
-                      "--framer-paragraph-spacing": "24px",
-                      "--variable-reference-vFsAmYfXc-oYm0CFyt_": vFsAmYfXc,
-                    },
-                    verticalAlignment: "top",
-                    withExternalLayout: true,
-                  }),
-                  /*#__PURE__*/ _jsx(RichText, {
-                    __fromCanvasComponent: true,
-                    children: /*#__PURE__*/ _jsx(React.Fragment, {
-                      children: /*#__PURE__*/ _jsx(motion.p, {
-                        className: "framer-styles-preset-1qlraow",
-                        "data-styles-preset": "W_eQrxgKo",
-                        dir: "auto",
-                        style: {
-                          "--framer-text-color":
-                            "var(--extracted-r6o4lv, var(--variable-reference-vFsAmYfXc-oYm0CFyt_))",
-                        },
-                        children: "o",
-                      }),
-                    }),
-                    className: "framer-r5yijb",
-                    "data-framer-cursor": BEFIdobR6,
-                    effect: textEffect2,
-                    fonts: ["Inter"],
-                    layoutDependency: layoutDependency,
-                    layoutId: "zSOoHDFui",
-                    style: {
-                      "--extracted-r6o4lv":
-                        "var(--variable-reference-vFsAmYfXc-oYm0CFyt_)",
-                      "--framer-paragraph-spacing": "24px",
-                      "--variable-reference-vFsAmYfXc-oYm0CFyt_": vFsAmYfXc,
-                    },
-                    verticalAlignment: "top",
-                    withExternalLayout: true,
-                  }),
-                ],
-              }),
-              /*#__PURE__*/ _jsxs(motion.div, {
-                className: "framer-1ew5jew",
-                "data-framer-name": "Container",
-                layoutDependency: layoutDependency,
-                layoutId: "mricaUCwF",
-                children: [
-                  /*#__PURE__*/ _jsx(RichText, {
-                    __fromCanvasComponent: true,
-                    children: /*#__PURE__*/ _jsx(React.Fragment, {
-                      children: /*#__PURE__*/ _jsx(motion.p, {
-                        className: "framer-styles-preset-1qlraow",
-                        "data-styles-preset": "W_eQrxgKo",
-                        dir: "auto",
-                        style: {
-                          "--framer-text-color":
-                            "var(--extracted-r6o4lv, var(--variable-reference-vFsAmYfXc-oYm0CFyt_))",
-                        },
-                        children: "o",
-                      }),
-                    }),
-                    className: "framer-tsy4ad",
-                    "data-framer-cursor": BEFIdobR6,
-                    "data-framer-name": "Placeholder",
-                    effect: textEffect3,
-                    fonts: ["Inter"],
-                    layoutDependency: layoutDependency,
-                    layoutId: "SmuRQlZRK",
-                    style: {
-                      "--extracted-r6o4lv":
-                        "var(--variable-reference-vFsAmYfXc-oYm0CFyt_)",
-                      "--framer-paragraph-spacing": "24px",
-                      "--variable-reference-vFsAmYfXc-oYm0CFyt_": vFsAmYfXc,
-                      opacity: 0,
-                    },
-                    verticalAlignment: "top",
-                    withExternalLayout: true,
-                  }),
-                  /*#__PURE__*/ _jsx(RichText, {
-                    __fromCanvasComponent: true,
-                    children: /*#__PURE__*/ _jsx(React.Fragment, {
-                      children: /*#__PURE__*/ _jsx(motion.p, {
-                        className: "framer-styles-preset-1qlraow",
-                        "data-styles-preset": "W_eQrxgKo",
-                        dir: "auto",
-                        style: {
-                          "--framer-text-color":
-                            "var(--extracted-r6o4lv, var(--variable-reference-vFsAmYfXc-oYm0CFyt_))",
-                        },
-                        children: "o",
-                      }),
-                    }),
-                    className: "framer-ku4f73",
-                    "data-framer-cursor": BEFIdobR6,
-                    effect: textEffect4,
-                    fonts: ["Inter"],
-                    layoutDependency: layoutDependency,
-                    layoutId: "D6cjYqftj",
-                    style: {
-                      "--extracted-r6o4lv":
-                        "var(--variable-reference-vFsAmYfXc-oYm0CFyt_)",
-                      "--framer-paragraph-spacing": "24px",
-                      "--variable-reference-vFsAmYfXc-oYm0CFyt_": vFsAmYfXc,
-                    },
-                    verticalAlignment: "top",
-                    withExternalLayout: true,
-                  }),
-                  /*#__PURE__*/ _jsx(RichText, {
-                    __fromCanvasComponent: true,
-                    children: /*#__PURE__*/ _jsx(React.Fragment, {
-                      children: /*#__PURE__*/ _jsx(motion.p, {
-                        className: "framer-styles-preset-1qlraow",
-                        "data-styles-preset": "W_eQrxgKo",
-                        dir: "auto",
-                        style: {
-                          "--framer-text-color":
-                            "var(--extracted-r6o4lv, var(--variable-reference-vFsAmYfXc-oYm0CFyt_))",
-                        },
-                        children: "o",
-                      }),
-                    }),
-                    className: "framer-mi94fx",
-                    "data-framer-cursor": BEFIdobR6,
-                    effect: textEffect5,
-                    fonts: ["Inter"],
-                    layoutDependency: layoutDependency,
-                    layoutId: "PjfWe2KLk",
-                    style: {
-                      "--extracted-r6o4lv":
-                        "var(--variable-reference-vFsAmYfXc-oYm0CFyt_)",
-                      "--framer-paragraph-spacing": "24px",
-                      "--variable-reference-vFsAmYfXc-oYm0CFyt_": vFsAmYfXc,
-                    },
-                    verticalAlignment: "top",
-                    withExternalLayout: true,
-                  }),
-                ],
-              }),
-              /*#__PURE__*/ _jsx(RichText, {
-                __fromCanvasComponent: true,
-                children: /*#__PURE__*/ _jsx(React.Fragment, {
-                  children: /*#__PURE__*/ _jsx(motion.p, {
-                    className: "framer-styles-preset-1qlraow",
-                    "data-styles-preset": "W_eQrxgKo",
-                    dir: "auto",
-                    style: {
-                      "--framer-text-color":
-                        "var(--extracted-r6o4lv, var(--variable-reference-vFsAmYfXc-oYm0CFyt_))",
-                    },
-                    children: "P",
-                  }),
-                }),
-                className: "framer-kax7sl",
-                "data-framer-cursor": BEFIdobR6,
-                effect: textEffect6,
-                fonts: ["Inter"],
-                layoutDependency: layoutDependency,
-                layoutId: "Wgo2clkPO",
-                style: {
-                  "--extracted-r6o4lv":
-                    "var(--variable-reference-vFsAmYfXc-oYm0CFyt_)",
-                  "--framer-paragraph-spacing": "24px",
-                  "--variable-reference-vFsAmYfXc-oYm0CFyt_": vFsAmYfXc,
+                  whiteSpace: "nowrap"
                 },
                 verticalAlignment: "top",
                 withExternalLayout: true,
@@ -501,8 +279,7 @@ const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
       }),
     }),
   });
-});
-const css = [
+});nst css = [
   "@supports (aspect-ratio: 1) { body { --framer-aspect-ratio-supported: auto; } }",
   ".framer-r2LUb.framer-21f3tv, .framer-r2LUb .framer-21f3tv { display: block; }",
   ".framer-r2LUb.framer-g79zwo { align-content: center; align-items: center; display: flex; flex-direction: row; flex-wrap: nowrap; gap: 0px; height: min-content; justify-content: center; overflow: var(--overflow-clip-fallback, clip); padding: 0px; position: relative; text-decoration: none; width: min-content; }",

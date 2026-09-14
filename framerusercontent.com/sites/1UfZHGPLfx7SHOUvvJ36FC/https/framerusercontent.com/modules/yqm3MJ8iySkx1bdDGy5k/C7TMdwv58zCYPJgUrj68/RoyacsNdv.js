@@ -119,7 +119,7 @@ const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
                   "data-styles-preset": "mMKAraaKM",
                   dir: "auto",
                   children:
-                    "Loop\xa0Creative\xa0Studio 421\xa0Waverly\xa0Street, Floor\xa03, Brooklyn, NY\xa011217",
+                    "Avataar Visora\xa0Creative\xa0Studio 421\xa0Waverly\xa0Street, Floor\xa03, Brooklyn, NY\xa011217",
                 }),
               }),
               className: "framer-1w37vbf",
