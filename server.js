@@ -47,14 +47,6 @@ const server = http.createServer((req, res) => {
   // Normalize pathname without trailing slash for route matching
   const cleanPath = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
 
-  // Block any audio requests (case-insensitive)
-  const lowerPathname = pathname.toLowerCase();
-  if (lowerPathname.endsWith('.mp3') || lowerPathname.endsWith('.wav') || lowerPathname.endsWith('.ogg') || lowerPathname.endsWith('.m4a')) {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('Audio removed');
-    return;
-  }
-
   let filePath = '';
   const lowerCleanPath = cleanPath.toLowerCase();
 
@@ -97,6 +89,15 @@ const server = http.createServer((req, res) => {
     filePath = path.join(__dirname, 'public', 'home-gallery.html');
   } else if (cleanPath === '/ad-films' || cleanPath === '/adfilms') {
     filePath = path.join(__dirname, 'public', 'index.html');
+  } else if (cleanPath.startsWith('/projects/')) {
+    // Route directly to public/projects/<slug>.html if it exists
+    const slug = cleanPath.replace(/^\/projects\//, '').toLowerCase().replace(/\.html$/, '');
+    const projectHtml = path.join(__dirname, 'public', 'projects', `${slug}.html`);
+    if (fs.existsSync(projectHtml) && fs.statSync(projectHtml).isFile()) {
+      filePath = projectHtml;
+    } else {
+      filePath = path.join(__dirname, 'public', 'index.html');
+    }
   } else {
     // Check if the requested file exists directly
     const directPath = path.join(__dirname, pathname);
@@ -108,14 +109,34 @@ const server = http.createServer((req, res) => {
       filePath = publicPath;
     } else if (pathname.startsWith('/assets/projects/')) {
       const filename = path.basename(pathname);
+      const lowerName = filename.toLowerCase();
       const candidates = [
         path.join(__dirname, 'public', 'assets', 'projects', filename),
+        path.join(__dirname, 'public', 'assets', 'projects', lowerName),
         path.join(__dirname, 'assets', 'projects', filename),
+        path.join(__dirname, 'assets', 'projects', lowerName),
         path.join(__dirname, 'Projects', 'Ad Films', filename),
         path.join(__dirname, 'Projects', 'Ad Films', 'Thumbnails', filename),
         path.join(__dirname, 'Projects', 'UGC', filename),
         path.join(__dirname, 'Projects', 'UGC', 'Thumbnails', filename),
+        path.join(__dirname, 'Projects', 'Jingles', filename),
       ];
+      // Check aliases for Jingles and UGC
+      if (lowerName === 'b-tex.wav' || lowerName === 'btex.wav') {
+        candidates.push(path.join(__dirname, 'Projects', 'Jingles', 'B tex.WAV'));
+      }
+      if (lowerName === 'madhuram.wav') {
+        candidates.push(path.join(__dirname, 'Projects', 'Jingles', 'madhuram.wav'));
+      }
+      if (lowerName === 'peanutji.mp3') {
+        candidates.push(path.join(__dirname, 'Projects', 'Jingles', 'Peanutji.MP3'));
+      }
+      if (lowerName === 'clarion-inn.mp4') {
+        candidates.push(path.join(__dirname, 'Projects', 'UGC', 'Clarion inn .mp4'));
+      }
+      if (lowerName === 'glenn.mp4') {
+        candidates.push(path.join(__dirname, 'Projects', 'UGC', 'Glen.mp4'));
+      }
       for (const cand of candidates) {
         if (fs.existsSync(cand) && fs.statSync(cand).isFile()) {
           filePath = cand;
@@ -143,7 +164,7 @@ const server = http.createServer((req, res) => {
     const fileSize = stat.size;
     const range = req.headers.range;
 
-    if (range && (ext === '.mp4' || ext === '.webm')) {
+    if (range && (ext === '.mp4' || ext === '.webm' || ext === '.mp3' || ext === '.wav')) {
       const parts = range.replace(/bytes=/, "").split("-");
       const start = parseInt(parts[0], 10);
       const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;

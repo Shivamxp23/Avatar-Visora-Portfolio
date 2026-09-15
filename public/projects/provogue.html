@@ -2,42 +2,145 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Provogue — Avataar Visora</title>
-  <meta name="description" content="Provogue — Ad Film by Avataar Visora">
+  <meta name="description" content="Provogue — Ad Films by Avataar Visora">
   <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #000; color: #fff; font-family: 'Inter', 'Geist Mono', monospace; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .container { width: 100%; max-width: 1200px; padding: 2rem; display: flex; flex-direction: column; align-items: center; }
-    .back-link { color: #999; text-decoration: none; font-size: 0.875rem; font-family: 'Geist Mono', monospace; letter-spacing: 0.05em; margin-bottom: 2rem; transition: color 0.2s; align-self: flex-start; }
-    .back-link:hover { color: #fff; }
-    .meta { text-align: center; margin-bottom: 2rem; }
-    .category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: #666; margin-bottom: 0.5rem; }
-    .title { font-size: 2.5rem; font-weight: 900; font-family: 'Inter', sans-serif; letter-spacing: -0.02em; }
-    .year { font-size: 0.875rem; color: #666; margin-top: 0.25rem; }
-    .video-wrapper { width: 100%; max-width: 900px; border-radius: 8px; overflow: hidden; border: 1px solid #222; }
-    media-controller { width: 100%; display: block; --media-primary-color: #fff; --media-secondary-color: #111; --media-text-color: #fff; --media-background-color: #000; --media-control-hover-background: #333; --media-font-family: 'Inter', sans-serif; }
-    video { width: 100%; display: block; }
-    media-control-bar { padding: 4px 8px; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 1.5rem;
+    }
+    .container {
+      width: 100%;
+      max-width: 1050px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .top-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .back-link {
+      color: #888;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+      transition: color 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover {
+      color: #fff;
+      transform: translateX(-3px);
+    }
+    .brand-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+    }
+    .meta {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #ff3366;
+      background: rgba(255, 51, 102, 0.1);
+      border: 1px solid rgba(255, 51, 102, 0.25);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    .title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .year {
+      font-size: 0.875rem;
+      color: #666;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 0.5rem;
+    }
+    .video-wrapper {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 255, 255, 0.03);
+      background: #050505;
+      position: relative;
+    }
+    media-controller {
+      width: 100%;
+      display: block;
+      --media-primary-color: #ffffff;
+      --media-secondary-color: #000000;
+      --media-text-color: #ffffff;
+      --media-background-color: #000000;
+      --media-control-hover-background: rgba(255, 255, 255, 0.15);
+      --media-font-family: 'Inter', sans-serif;
+    }
+    video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: block;
+      background: #000;
+    }
+    media-control-bar {
+      padding: 8px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    }
   </style>
   <script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@4/+esm"></script>
 </head>
 <body>
   <div class="container">
-    <a href="/" class="back-link">← Back to Portfolio</a>
+    <div class="top-nav">
+      <a href="/" class="back-link">← Back to Portfolio</a>
+      <span class="brand-tag">AVATAAR VISORA</span>
+    </div>
     <div class="meta">
-      <div class="category">Ad Films</div>
+      <div class="badge">Ad Films</div>
       <h1 class="title">Provogue</h1>
       <div class="year">2026</div>
     </div>
     <div class="video-wrapper">
-      <media-controller>
-        <video slot="media" src="/assets/projects/provogue.mp4" preload="metadata" playsinline crossorigin="anonymous"></video>
+      <media-controller defaultstreamtype="on-demand">
+        <video slot="media" src="/assets/projects/provogue.mp4" poster="/assets/projects/provogue.png" preload="auto" playsinline autoplay controls></video>
         <media-control-bar>
           <media-play-button></media-play-button>
-          <media-seek-backward-button></media-seek-backward-button>
-          <media-seek-forward-button></media-seek-forward-button>
+          <media-seek-backward-button seekoffset="10"></media-seek-backward-button>
+          <media-seek-forward-button seekoffset="10"></media-seek-forward-button>
           <media-time-range></media-time-range>
           <media-time-display showduration></media-time-display>
           <media-mute-button></media-mute-button>

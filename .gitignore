@@ -15,3 +15,5 @@ yarn-error.log*
 *.wav
 *.MP3
 *.mp3
+scratch/
+

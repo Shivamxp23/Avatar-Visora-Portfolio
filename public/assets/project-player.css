@@ -1,0 +1,312 @@
+/* Universal Project Media Player Modal — Avataar Visora */
+:root {
+  --av-bg-glass: rgba(14, 14, 18, 0.88);
+  --av-border: rgba(255, 255, 255, 0.12);
+  --av-glow-adfilm: rgba(255, 51, 102, 0.3);
+  --av-glow-ugc: rgba(0, 230, 153, 0.3);
+  --av-glow-jingle: rgba(0, 229, 255, 0.3);
+}
+
+.av-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s;
+}
+
+.av-modal-overlay.av-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.av-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  background: var(--av-bg-glass);
+  border: 1px solid var(--av-border);
+  border-radius: 20px;
+  box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.95), 0 0 50px rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.av-modal-card.av-card-audio {
+  max-width: 660px;
+}
+
+.av-modal-overlay.av-open .av-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+/* Header */
+.av-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.av-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.av-badge {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.av-badge-adfilm {
+  color: #ff3366;
+  background: rgba(255, 51, 102, 0.12);
+  border: 1px solid rgba(255, 51, 102, 0.3);
+}
+
+.av-badge-ugc {
+  color: #00e699;
+  background: rgba(0, 230, 153, 0.12);
+  border: 1px solid rgba(0, 230, 153, 0.3);
+}
+
+.av-badge-jingle {
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.av-title {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0;
+}
+
+.av-year {
+  font-family: monospace, 'Inter';
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.av-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #aaa;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.av-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: rotate(90deg) scale(1.05);
+}
+
+.av-close-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+}
+
+/* Media body */
+.av-modal-body {
+  position: relative;
+  width: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Video Player */
+.av-video-container {
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 75vh;
+  position: relative;
+  background: #000;
+}
+
+.av-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Audio Player */
+.av-audio-container {
+  width: 100%;
+  padding: 2.25rem 2rem 2rem;
+  background: linear-gradient(180deg, rgba(20, 20, 24, 0.95) 0%, rgba(10, 10, 12, 1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.av-audio-waveform {
+  width: 100%;
+  height: 90px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  margin-bottom: 1.75rem;
+}
+
+.av-audio-timeline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.av-progress-bar {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  accent-color: #00e5ff;
+}
+
+.av-time-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: monospace, sans-serif;
+  font-size: 0.75rem;
+  color: #777;
+}
+
+.av-audio-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.av-play-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 25px rgba(255, 255, 255, 0.35);
+  transition: transform 0.15s, background-color 0.2s;
+}
+
+.av-play-btn:hover {
+  transform: scale(1.08);
+  background: #00e5ff;
+}
+
+.av-play-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.av-audio-vol-row {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  font-size: 0.75rem;
+  font-family: monospace, sans-serif;
+}
+
+.av-vol-slider {
+  width: 85px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  accent-color: #fff;
+  cursor: pointer;
+}
+
+/* Footer / Direct Link */
+.av-modal-footer {
+  padding: 0.85rem 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.015);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.av-project-route {
+  font-family: monospace, sans-serif;
+  font-size: 0.75rem;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.av-project-route:hover {
+  color: #fff;
+}
+
+.av-hint {
+  font-size: 0.75rem;
+  color: #555;
+  font-family: monospace, sans-serif;
+}
+
+@media (max-width: 640px) {
+  .av-modal-header {
+    padding: 1rem 1.25rem;
+  }
+  .av-title {
+    font-size: 1.1rem;
+  }
+  .av-audio-container {
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+  .av-hint {
+    display: none;
+  }
+}

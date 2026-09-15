@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Peanutji — Avataar Visora</title>
+  <meta name="description" content="Peanutji — Jingle by Avataar Visora">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .container {
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .top-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .back-link {
+      color: #888;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+      transition: color 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover {
+      color: #fff;
+      transform: translateX(-3px);
+    }
+    .brand-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #555;
+    }
+    .player-card {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(25, 25, 28, 0.8), rgba(12, 12, 14, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.95), 0 0 60px rgba(0, 229, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      backdrop-filter: blur(20px);
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #00e5ff;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    .title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(180deg, #ffffff 0%, #b8b8b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .artist {
+      font-size: 0.875rem;
+      color: #888;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 2rem;
+    }
+    .visualizer-canvas {
+      width: 100%;
+      height: 90px;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .timeline {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      outline: none;
+      cursor: pointer;
+      accent-color: #00e5ff;
+    }
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #777;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .play-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      background: #ffffff;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s, background-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    }
+    .play-btn:hover {
+      transform: scale(1.06);
+      background: #00e5ff;
+    }
+    .play-btn svg { width: 22px; height: 22px; fill: currentColor; }
+    .vol-row {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #666;
+      font-size: 0.8rem;
+    }
+    .vol-slider {
+      width: 90px;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      accent-color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <a href="/" class="back-link">← Back to Portfolio</a>
+      <span class="brand-tag">AVATAAR VISORA</span>
+    </div>
+    <div class="player-card">
+      <div class="badge">Jingle</div>
+      <h1 class="title">Peanutji</h1>
+      <div class="artist">Avataar Visora • 2026</div>
+
+      <canvas id="canvas" class="visualizer-canvas" width="600" height="90"></canvas>
+
+      <div class="timeline">
+        <input type="range" id="seek" class="progress-bar" value="0" min="0" max="100" step="0.1">
+        <div class="time-row">
+          <span id="cur-time">0:00</span>
+          <span id="dur-time">0:00</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="play-btn" class="play-btn" aria-label="Play or pause">
+          <svg id="play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </button>
+      </div>
+
+      <div class="vol-row">
+        <span>VOL</span>
+        <input type="range" id="vol" class="vol-slider" min="0" max="1" step="0.01" value="0.9">
+      </div>
+
+      <audio id="audio" src="/assets/projects/peanutji.mp3" preload="auto" autoplay></audio>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('play-btn');
+    const playIcon = document.getElementById('play-icon');
+    const seek = document.getElementById('seek');
+    const curTime = document.getElementById('cur-time');
+    const durTime = document.getElementById('dur-time');
+    const vol = document.getElementById('vol');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    function fmt(sec) {
+      if (!sec || isNaN(sec)) return '0:00';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return m + ':' + (s < 10 ? '0' : '') + s;
+    }
+
+    function updatePlayIcon(isPlaying) {
+      if (isPlaying) {
+        playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+      } else {
+        playIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+      }
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', () => updatePlayIcon(true));
+    audio.addEventListener('pause', () => updatePlayIcon(false));
+    audio.addEventListener('ended', () => updatePlayIcon(false));
+
+    audio.addEventListener('loadedmetadata', () => {
+      durTime.textContent = fmt(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      curTime.textContent = fmt(audio.currentTime);
+      if (audio.duration) {
+        seek.value = (audio.currentTime / audio.duration) * 100;
+      }
+    });
+
+    seek.addEventListener('input', () => {
+      if (audio.duration) {
+        audio.currentTime = (seek.value / 100) * audio.duration;
+      }
+    });
+
+    vol.addEventListener('input', () => {
+      audio.volume = vol.value;
+    });
+
+    // Visualizer simulation (wave animation)
+    let animId;
+    function draw() {
+      animId = requestAnimationFrame(draw);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const isPlaying = !audio.paused;
+      const numBars = 36;
+      const barWidth = canvas.width / numBars - 4;
+      const t = Date.now() * 0.005;
+
+      for (let i = 0; i < numBars; i++) {
+        let h;
+        if (isPlaying) {
+          const v = Math.sin(t + i * 0.4) * 0.5 + Math.cos(t * 1.5 - i * 0.2) * 0.5;
+          h = Math.max(6, Math.abs(v) * 65);
+        } else {
+          h = 4;
+        }
+        const x = i * (barWidth + 4) + 2;
+        const y = (canvas.height - h) / 2;
+
+        const grad = ctx.createLinearGradient(0, y, 0, y + h);
+        grad.addColorStop(0, '#00e5ff');
+        grad.addColorStop(1, '#7000ff');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(x, y, barWidth, h, 2) : ctx.rect(x, y, barWidth, h);
+        ctx.fill();
+      }
+    }
+    draw();
+
+    // Auto-attempt play
+    audio.play().then(() => updatePlayIcon(true)).catch(() => updatePlayIcon(false));
+  </script>
+</body>
+</html>

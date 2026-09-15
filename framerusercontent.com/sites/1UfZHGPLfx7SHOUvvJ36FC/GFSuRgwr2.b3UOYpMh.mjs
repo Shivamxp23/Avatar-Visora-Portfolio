@@ -12,10 +12,27 @@ import{n as e,t}from"./rolldown-runtime.Dh6celcD.mjs";import{A as n,O as r,P as 
       'comet': { video: '/assets/projects/comet.mp4', thumbnail: '/assets/projects/comet.png' },
       'clarion-inn': { video: '/assets/projects/clarion-inn.mp4', thumbnail: '/assets/projects/clarion-inn.png' },
       'laneige': { video: '/assets/projects/laneige.mp4', thumbnail: '/assets/projects/laneige.png' },
-      'glenn': { video: '/assets/projects/glenn.mp4', thumbnail: '/assets/projects/glenn.png' }
+      'glenn': { video: '/assets/projects/glenn.mp4', thumbnail: '/assets/projects/glenn.png' },
+      'btex': { audio: '/assets/projects/b-tex.wav', title: 'B Tex' },
+      'b-tex': { audio: '/assets/projects/b-tex.wav', title: 'B Tex' },
+      'madhuram': { audio: '/assets/projects/madhuram.wav', title: 'Madhuram' },
+      'madhuram-kitchenwares': { audio: '/assets/projects/madhuram.wav', title: 'Madhuram' },
+      'peanutji': { audio: '/assets/projects/peanutji.mp3', title: 'Peanutji' }
     };
     const media = PROJECT_MEDIA[slug];
-    if (media) {
+    if (media && media.audio) {
+      return o('div', {
+        className: 'custom-audio-player-wrapper',
+        style: { width: '100%', maxWidth: '100%', position: 'relative', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem' },
+        children: o('audio', {
+          src: media.audio,
+          controls: true,
+          autoPlay: true,
+          style: { width: '100%', maxWidth: '500px' }
+        })
+      });
+    }
+    if (media && media.video) {
       return o('div', {
         className: 'custom-video-player-wrapper',
         style: { width: '100%', maxWidth: '100%', position: 'relative', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' },
