@@ -180,11 +180,17 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    res.writeHead(200, {
+    const headers = {
       'Content-Length': fileSize,
       'Content-Type': contentType,
       'Accept-Ranges': 'bytes'
-    });
+    };
+    if (ext === '.html' || ext === '.js' || ext === '.mjs' || ext === '.css') {
+      headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
+      headers['Pragma'] = 'no-cache';
+      headers['Expires'] = '0';
+    }
+    res.writeHead(200, headers);
     fs.createReadStream(filePath).pipe(res);
     return;
   }
