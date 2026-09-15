@@ -234,6 +234,11 @@
   }
 
   function closeModal() {
+    if (window.location.pathname.startsWith('/projects/')) {
+      window.location.href = '/';
+      return;
+    }
+
     if (!overlayEl) return;
     overlayEl.classList.remove('av-open');
 
@@ -245,6 +250,7 @@
     if (activeMediaEl) {
       try {
         activeMediaEl.pause();
+        activeMediaEl.currentTime = 0;
         activeMediaEl.src = '';
       } catch (err) {}
       activeMediaEl = null;
@@ -252,6 +258,12 @@
 
     const bodyEl = overlayEl.querySelector('#av-body');
     if (bodyEl) bodyEl.innerHTML = '';
+
+    if (window.location.hash) {
+      try {
+        history.replaceState('', document.title, window.location.pathname + window.location.search);
+      } catch (err) {}
+    }
   }
 
   function togglePlayPause() {
@@ -443,6 +455,11 @@
 
   function getSlugFromClick(target) {
     if (!target) return null;
+    // CRITICAL: Never treat clicks inside the modal player as project navigation!
+    if (target.closest('.av-modal-overlay, .av-modal-card, #av-close, .av-close-btn')) {
+      return null;
+    }
+
     const link = target.closest('a');
     if (link) {
       const href = link.getAttribute('href') || '';
@@ -486,9 +503,33 @@
   window.addEventListener(
     'click',
     function (e) {
+      // 1. If clicking close button anywhere (modal or page):
+      const closeBtn = e.target.closest('#av-close, .av-close-btn, .close-btn, .close-page-btn, [data-action="close-player"]');
+      if (closeBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        closeModal();
+        return;
+      }
+
+      // 2. If clicking on the backdrop of the modal:
+      if (overlayEl && (e.target === overlayEl || (e.target.classList && e.target.classList.contains('av-modal-overlay')))) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        closeModal();
+        return;
+      }
+
+      // 3. If clicking inside the modal card (e.g. video, canvas, controls, audio scrub), let it behave normally:
+      if (e.target.closest('.av-modal-card')) {
+        return;
+      }
+
+      // 4. Check for project clicks on the page:
       const slug = getSlugFromClick(e.target);
       if (slug) {
-        // Prevent Framer router from taking over or 404ing
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
