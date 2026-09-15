@@ -16,33 +16,40 @@
       background: #ffffff;
       color: #000000;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow-x: hidden;
-      padding: 1.5rem;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100dvh;
+      overflow: hidden !important;
+      position: fixed;
+      inset: 0;
     }
-    .container {
+    .page-wrapper {
       width: 100%;
-      max-width: 1050px;
+      height: 100%;
+      height: 100dvh;
+      max-height: 100dvh;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       align-items: center;
+      padding: 0.85rem 1.5rem 0.75rem;
+      box-sizing: border-box;
+      overflow: hidden;
     }
     .top-nav {
+      flex: 0 0 auto;
       width: 100%;
+      max-width: 1000px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 0.35rem;
     }
     .back-link {
       color: #666666;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-family: 'Fragment Mono', 'Geist Mono', monospace;
       letter-spacing: 0.02em;
       transition: color 0.2s, transform 0.2s;
@@ -56,7 +63,7 @@
     }
     .brand-tag {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #000000;
@@ -67,8 +74,8 @@
       color: #000000;
       background: #f4f4f6;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
@@ -82,28 +89,40 @@
       border-color: #000000;
       transform: rotate(90deg) scale(1.05);
     }
+    .main-stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
     .meta {
+      flex: 0 0 auto;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 0.4rem;
     }
     .badge {
       display: inline-block;
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.82rem;
       font-weight: 400;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: #000000;
       background: #f0f0f2;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      padding: 4px 14px;
+      padding: 2px 11px;
       border-radius: 999px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.25rem;
       line-height: 1.1;
     }
     .title {
       font-family: 'Anton', -apple-system, sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-size: clamp(1.8rem, 4.5vh, 3.2rem);
       font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.05;
@@ -111,22 +130,37 @@
       color: #000000;
     }
     .year {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       color: #777777;
       font-family: 'Fragment Mono', 'Geist Mono', monospace;
-      margin-top: 0.5rem;
+      margin-top: 0.2rem;
+    }
+    .video-container {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
     .video-wrapper {
-      width: 100%;
-      border-radius: 14px;
+      max-width: 100%;
+      max-height: 100%;
+      aspect-ratio: 16/9;
+      width: auto;
+      height: 100%;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);
       background: #000000;
-      position: relative;
+      display: flex;
     }
     media-controller {
       width: 100%;
+      height: 100%;
+      max-height: 100%;
       display: block;
       --media-primary-color: #ffffff;
       --media-secondary-color: #000000;
@@ -137,53 +171,129 @@
     }
     video {
       width: 100%;
+      height: 100%;
       aspect-ratio: 16/9;
       display: block;
       background: #000000;
+      object-fit: contain;
     }
     media-control-bar {
       padding: 8px 12px;
       background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     }
+    .project-footer {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 0.4rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Fragment Mono', 'Geist Mono', monospace;
+      font-size: 0.78rem;
+      color: #666666;
+    }
+    .footer-phone {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .footer-phone:hover {
+      opacity: 0.7;
+    }
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-link {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .footer-link:hover {
+      opacity: 0.7;
+    }
+    .footer-dot {
+      color: #bbbbbb;
+      font-size: 0.7rem;
+    }
+    .footer-copy {
+      color: #888888;
+    }
     @media (max-width: 640px) {
-      .top-nav { margin-bottom: 1.25rem; }
-      .meta { margin-bottom: 1.25rem; }
+      .page-wrapper { padding: 0.65rem 0.85rem 0.55rem; }
       .brand-tag { font-size: 1.25rem; }
+      .project-footer {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+        font-size: 0.7rem;
+      }
+      .video-wrapper {
+        width: 100%;
+        height: auto;
+      }
     }
   </style>
   <script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@4/+esm"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="page-wrapper">
     <div class="top-nav">
       <a href="/" class="back-link">← Back to Portfolio</a>
       <a href="/" class="brand-tag">AVATAAR VISORA</a>
       <a href="/" class="close-page-btn" aria-label="Close and return to landing page">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </a>
     </div>
-    <div class="meta">
-      <div class="badge">Ad Films</div>
-      <h1 class="title">Provogue</h1>
-      <div class="year">2026</div>
+
+    <div class="main-stage">
+      <div class="meta">
+        <div class="badge">Ad Films</div>
+        <h1 class="title">Provogue</h1>
+        <div class="year">2026</div>
+      </div>
+      <div class="video-container">
+        <div class="video-wrapper">
+          <media-controller defaultstreamtype="on-demand">
+            <video slot="media" src="/assets/projects/provogue.mp4" poster="/assets/projects/provogue.png" preload="auto" playsinline autoplay controls></video>
+            <media-control-bar>
+              <media-play-button></media-play-button>
+              <media-seek-backward-button seekoffset="10"></media-seek-backward-button>
+              <media-seek-forward-button seekoffset="10"></media-seek-forward-button>
+              <media-time-range></media-time-range>
+              <media-time-display showduration></media-time-display>
+              <media-mute-button></media-mute-button>
+              <media-volume-range></media-volume-range>
+            </media-control-bar>
+          </media-controller>
+        </div>
+      </div>
     </div>
-    <div class="video-wrapper">
-      <media-controller defaultstreamtype="on-demand">
-        <video slot="media" src="/assets/projects/provogue.mp4" poster="/assets/projects/provogue.png" preload="auto" playsinline autoplay controls></video>
-        <media-control-bar>
-          <media-play-button></media-play-button>
-          <media-seek-backward-button seekoffset="10"></media-seek-backward-button>
-          <media-seek-forward-button seekoffset="10"></media-seek-forward-button>
-          <media-time-range></media-time-range>
-          <media-time-display showduration></media-time-display>
-          <media-mute-button></media-mute-button>
-          <media-volume-range></media-volume-range>
-        </media-control-bar>
-      </media-controller>
-    </div>
+
+    <footer class="project-footer">
+      <div class="footer-left">
+        <a href="tel:+918320302482" class="footer-phone">+918320302482</a>
+      </div>
+      <div class="footer-socials">
+        <a href="https://wa.me/918320302482" target="_blank" rel="noopener" class="footer-link">WA</a>
+        <span class="footer-dot">•</span>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-link">IG</a>
+        <span class="footer-dot">•</span>
+        <a href="https://x.com" target="_blank" rel="noopener" class="footer-link">X</a>
+      </div>
+      <div class="footer-right">
+        <span class="footer-copy">©2026 Avataar Visora.</span>
+      </div>
+    </footer>
   </div>
 
   <script>

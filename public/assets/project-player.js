@@ -204,8 +204,19 @@
         </div>
         <div class="av-modal-body" id="av-body"></div>
         <div class="av-modal-footer">
-          <a href="#" class="av-project-route" id="av-route" target="_blank" rel="noopener">Open Dedicated Page ↗</a>
-          <span class="av-hint">ESC to close • SPACE to toggle</span>
+          <div class="av-modal-footer-left">
+            <a href="tel:+918320302482" class="av-footer-phone">+918320302482</a>
+          </div>
+          <div class="av-modal-footer-center">
+            <a href="https://wa.me/918320302482" target="_blank" rel="noopener" class="av-footer-link">WA</a>
+            <span class="av-footer-dot">•</span>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="av-footer-link">IG</a>
+            <span class="av-footer-dot">•</span>
+            <a href="https://x.com" target="_blank" rel="noopener" class="av-footer-link">X</a>
+          </div>
+          <div class="av-modal-footer-right">
+            <a href="#" class="av-project-route" id="av-route" target="_blank" rel="noopener">Open Dedicated Page ↗</a>
+          </div>
         </div>
       </div>
     `;
