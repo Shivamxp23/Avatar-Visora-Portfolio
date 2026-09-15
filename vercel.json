@@ -8,20 +8,70 @@
     {
       "source": "/framerusercontent.com/(.*)\\.mjs",
       "headers": [
-        { "key": "Content-Type", "value": "text/javascript; charset=utf-8" }
+        {
+          "key": "Content-Type",
+          "value": "text/javascript; charset=utf-8"
+        }
       ]
     },
     {
       "source": "/app.framerstatic.com/(.*)\\.mjs",
       "headers": [
-        { "key": "Content-Type", "value": "text/javascript; charset=utf-8" }
+        {
+          "key": "Content-Type",
+          "value": "text/javascript; charset=utf-8"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/home-gallery", "destination": "/index.html" },
-    { "source": "/home-loop", "destination": "/index.html" },
-    { "source": "/home-spiral", "destination": "/index.html" },
-    { "source": "/projects/:slug", "destination": "/index.html" }
+    {
+      "source": "/home-gallery",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/home-loop",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/home-spiral",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/projects/:slug",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/studio",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/insights",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/legal/privacy-policy",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/legal/terms-of-service",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/404",
+      "destination": "/",
+      "permanent": false
+    }
   ]
 }

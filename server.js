@@ -57,6 +57,20 @@ const server = http.createServer((req, res) => {
   let filePath = '';
 
   // Block removed project pages completely from the entire website
+  const REMOVED_ROUTES = [
+    '/studio',
+    '/insights',
+    '/contact',
+    '/legal/privacy-policy',
+    '/legal/terms-of-service',
+    '/404',
+  ];
+  if (REMOVED_ROUTES.some(r => lowerCleanPath === r || lowerCleanPath.startsWith(r + '/'))) {
+    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end('<!DOCTYPE html><html><head><meta charset="utf-8"><title>404 - Page Not Found</title></head><body style="background:#000;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;font-family:sans-serif"><h1>404 - Page Not Found</h1></body></html>');
+    return;
+  }
+
   const REMOVED_PROJECTS = [
     '/projects/studio-24',
     '/projects/studio24',
