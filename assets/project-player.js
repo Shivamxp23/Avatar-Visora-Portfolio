@@ -47,7 +47,8 @@
       category: 'Jingle',
       badgeClass: 'av-badge-jingle',
       type: 'audio',
-      media: '/assets/projects/b-tex.wav',
+      media: '/assets/projects/b-tex.mp3',
+      fallbackMedia: '/assets/projects/b-tex.wav',
       route: '/projects/btex'
     },
     'b-tex': {
@@ -55,7 +56,8 @@
       category: 'Jingle',
       badgeClass: 'av-badge-jingle',
       type: 'audio',
-      media: '/assets/projects/b-tex.wav',
+      media: '/assets/projects/b-tex.mp3',
+      fallbackMedia: '/assets/projects/b-tex.wav',
       route: '/projects/btex'
     },
     'comet': {
@@ -76,12 +78,31 @@
       poster: '/assets/projects/clarion-inn.png',
       route: '/projects/clarion-inn'
     },
+    'clarion': {
+      title: 'Clarion Inn',
+      category: 'UGC',
+      badgeClass: 'av-badge-ugc',
+      type: 'video',
+      media: '/assets/projects/clarion-inn.mp4',
+      poster: '/assets/projects/clarion-inn.png',
+      route: '/projects/clarion-inn'
+    },
+    'clarioninn': {
+      title: 'Clarion Inn',
+      category: 'UGC',
+      badgeClass: 'av-badge-ugc',
+      type: 'video',
+      media: '/assets/projects/clarion-inn.mp4',
+      poster: '/assets/projects/clarion-inn.png',
+      route: '/projects/clarion-inn'
+    },
     'madhuram': {
       title: 'Madhuram',
       category: 'Jingle',
       badgeClass: 'av-badge-jingle',
       type: 'audio',
-      media: '/assets/projects/madhuram.wav',
+      media: '/assets/projects/madhuram.mp3',
+      fallbackMedia: '/assets/projects/madhuram.wav',
       route: '/projects/madhuram'
     },
     'madhuram-kitchenwares': {
@@ -89,10 +110,27 @@
       category: 'Jingle',
       badgeClass: 'av-badge-jingle',
       type: 'audio',
-      media: '/assets/projects/madhuram.wav',
+      media: '/assets/projects/madhuram.mp3',
+      fallbackMedia: '/assets/projects/madhuram.wav',
       route: '/projects/madhuram'
     },
     'peanutji': {
+      title: 'Peanutji',
+      category: 'Jingle',
+      badgeClass: 'av-badge-jingle',
+      type: 'audio',
+      media: '/assets/projects/peanutji.mp3',
+      route: '/projects/peanutji'
+    },
+    'peanut-ji': {
+      title: 'Peanutji',
+      category: 'Jingle',
+      badgeClass: 'av-badge-jingle',
+      type: 'audio',
+      media: '/assets/projects/peanutji.mp3',
+      route: '/projects/peanutji'
+    },
+    'night-shift': {
       title: 'Peanutji',
       category: 'Jingle',
       badgeClass: 'av-badge-jingle',
@@ -298,7 +336,10 @@
           <span>VOL</span>
           <input type="range" class="av-vol-slider" id="av-vol" min="0" max="1" step="0.01" value="0.9">
         </div>
-        <audio id="av-audio" src="${project.media}" preload="auto"></audio>
+        <audio id="av-audio" src="${project.media}" preload="auto">
+          <source src="${project.media}" type="${project.media.endsWith('.mp3') ? 'audio/mpeg' : 'audio/wav'}">
+          ${project.fallbackMedia ? `<source src="${project.fallbackMedia}" type="${project.fallbackMedia.endsWith('.mp3') ? 'audio/mpeg' : 'audio/wav'}">` : ''}
+        </audio>
       `;
 
       bodyEl.appendChild(container);
@@ -412,14 +453,28 @@
       }
     }
 
-    // Inspect parents with data-slug or text match
+    // Inspect parents with data-slug, data-project, or text match
     let curr = target;
     let depth = 0;
     while (curr && depth < 6 && curr !== document.body) {
-      const dataSlug = curr.getAttribute && curr.getAttribute('data-project');
+      const dataSlug = curr.getAttribute && (curr.getAttribute('data-project') || curr.getAttribute('data-slug'));
       if (dataSlug && PROJECT_REGISTRY[dataSlug.toLowerCase()]) {
         return dataSlug.toLowerCase();
       }
+
+      const txt = (curr.textContent || '').trim().toLowerCase();
+      if (txt.includes('bisleri')) return 'bisleri';
+      if (txt.includes('maggie')) return 'maggie';
+      if (txt.includes('nddb')) return 'nddb';
+      if (txt.includes('provogue')) return 'provogue';
+      if (txt.includes('b tex') || txt.includes('b-tex') || txt.includes('btex')) return 'btex';
+      if (txt.includes('comet')) return 'comet';
+      if (txt.includes('clarion')) return 'clarion-inn';
+      if (txt.includes('madhuram')) return 'madhuram';
+      if (txt.includes('peanut')) return 'peanutji';
+      if (txt.includes('laneige')) return 'laneige';
+      if (txt.includes('glen')) return 'glenn';
+
       curr = curr.parentElement;
       depth++;
     }
@@ -452,4 +507,23 @@
   };
 
   console.log('Avataar Visora Universal Project Player initialized.');
+})();
+
+
+// Universal footer removal safeguard
+(function() {
+  function purgeFooters() {
+    var selectors = 'footer, .framer-l3pwO, [data-framer-name="Footer section"], [data-framer-name="Footer"], .framer-n0lf92-container, .framer-pczdbx-container, .framer-1w9ow87-container';
+    var found = document.querySelectorAll(selectors);
+    for (var i = 0; i < found.length; i++) {
+      found[i].remove();
+    }
+  }
+  purgeFooters();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', purgeFooters);
+  }
+  if (window.MutationObserver) {
+    new MutationObserver(purgeFooters).observe(document.documentElement, { childList: true, subtree: true });
+  }
 })();

@@ -310,3 +310,42 @@
     display: none;
   }
 }
+
+/* Suppress all hover thumbnail and cursor preview images */
+.framer-n30PI .framer-rjiaqv,
+.framer-rjiaqv,
+[data-framer-name="Project 1"],
+[data-framer-name="Project 2"],
+[data-framer-name="Project 3"],
+[data-framer-name="Project 4"],
+[data-framer-name="Project 5"],
+[data-framer-name="Project 6"],
+[data-framer-name="Project 7"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+
+/* Total Footer Removal across Entire Website */
+footer,
+.framer-l3pwO,
+[data-framer-name="Footer section"],
+[data-framer-name="Footer"],
+.framer-n0lf92-container,
+.framer-pczdbx-container,
+.framer-1w9ow87-container,
+div:has(> footer),
+div:has(> .framer-l3pwO) {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}

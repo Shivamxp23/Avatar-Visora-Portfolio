@@ -10,10 +10,5 @@ yarn-error.log*
 *.log
 *.map
 /Projects/
-*.mp4
-*.WAV
-*.wav
-*.MP3
-*.mp3
 scratch/
 
