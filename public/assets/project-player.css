@@ -484,3 +484,9 @@ div:has(> .framer-l3pwO) {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
+.av-footer-copy {
+  font-family: 'Fragment Mono', 'Geist Mono', monospace;
+  font-size: 0.75rem;
+  color: #888888;
+}

@@ -210,12 +210,10 @@
           <div class="av-modal-footer-center">
             <a href="https://wa.me/918320302482" target="_blank" rel="noopener" class="av-footer-link">WA</a>
             <span class="av-footer-dot">•</span>
-            <a href="https://instagram.com" target="_blank" rel="noopener" class="av-footer-link">IG</a>
-            <span class="av-footer-dot">•</span>
-            <a href="https://x.com" target="_blank" rel="noopener" class="av-footer-link">X</a>
+            <a href="https://www.instagram.com/avataar.visora" target="_blank" rel="noopener" class="av-footer-link">IG</a>
           </div>
           <div class="av-modal-footer-right">
-            <a href="#" class="av-project-route" id="av-route" target="_blank" rel="noopener">Open Dedicated Page ↗</a>
+            <span class="av-footer-copy">©2026 Avataar Visora.</span>
           </div>
         </div>
       </div>
@@ -300,8 +298,6 @@
     const badgeEl = overlayEl.querySelector('#av-badge');
     const titleEl = overlayEl.querySelector('#av-title');
     const bodyEl = overlayEl.querySelector('#av-body');
-    const routeEl = overlayEl.querySelector('#av-route');
-
     // Reset card classes
     cardEl.classList.remove('av-card-audio');
 
@@ -309,9 +305,6 @@
     badgeEl.className = 'av-badge ' + project.badgeClass;
     badgeEl.textContent = project.category;
     titleEl.textContent = project.title;
-    routeEl.href = project.route;
-    routeEl.textContent = `${project.title} Page ↗`;
-
     bodyEl.innerHTML = '';
 
     if (project.type === 'video') {
