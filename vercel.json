@@ -1,18 +1,27 @@
 {
   "version": 2,
+  "buildCommand": "node build.mjs",
+  "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/framerusercontent.com/(.*)\\.mjs",
+      "headers": [
+        { "key": "Content-Type", "value": "text/javascript; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/app.framerstatic.com/(.*)\\.mjs",
+      "headers": [
+        { "key": "Content-Type", "value": "text/javascript; charset=utf-8" }
+      ]
+    }
+  ],
   "rewrites": [
-    { "source": "/assets/(.*)", "destination": "/public/assets/$1" },
-    { "source": "/framerusercontent.com/(.*)", "destination": "/framerusercontent.com/$1" },
-    { "source": "/fonts.gstatic.com/(.*)", "destination": "/fonts.gstatic.com/$1" },
-    { "source": "/fonts.googleapis.com/(.*)", "destination": "/fonts.googleapis.com/$1" },
-    { "source": "/app.framerstatic.com/(.*)", "destination": "/app.framerstatic.com/$1" },
-    { "source": "/home-gallery", "destination": "/public/index.html" },
-    { "source": "/home-loop", "destination": "/public/index.html" },
-    { "source": "/home-spiral", "destination": "/public/index.html" },
-    { "source": "/", "destination": "/public/index.html" },
-    { "source": "/index.html", "destination": "/public/index.html" },
-    { "source": "/(.*)", "destination": "/public/$1" }
+    { "source": "/home-gallery", "destination": "/index.html" },
+    { "source": "/home-loop", "destination": "/index.html" },
+    { "source": "/home-spiral", "destination": "/index.html" },
+    { "source": "/projects/:slug", "destination": "/index.html" }
   ]
 }
