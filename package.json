@@ -8,7 +8,14 @@
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "keywords": ["portfolio", "creative-agency"],
+  "keywords": [
+    "portfolio",
+    "creative-agency"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.2.6",
+    "media-chrome": "^4.19.2"
+  }
 }

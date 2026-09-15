@@ -23,6 +23,7 @@ const assetDirs = [
   'fonts.gstatic.com',
   'fonts.googleapis.com',
   'app.framerstatic.com',
+  'assets',
 ];
 
 for (const dir of assetDirs) {

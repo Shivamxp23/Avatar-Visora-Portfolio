@@ -47,8 +47,9 @@ const server = http.createServer((req, res) => {
   // Normalize pathname without trailing slash for route matching
   const cleanPath = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
 
-  // Block any audio requests
-  if (pathname.endsWith('.mp3') || pathname.endsWith('.wav') || pathname.endsWith('.ogg') || pathname.endsWith('.m4a')) {
+  // Block any audio requests (case-insensitive)
+  const lowerPathname = pathname.toLowerCase();
+  if (lowerPathname.endsWith('.mp3') || lowerPathname.endsWith('.wav') || lowerPathname.endsWith('.ogg') || lowerPathname.endsWith('.m4a')) {
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     res.end('Audio removed');
     return;
@@ -90,9 +91,12 @@ const server = http.createServer((req, res) => {
   if (cleanPath === '/' || cleanPath === '/index.html') {
     filePath = path.join(__dirname, 'public', 'index.html');
   } else if (cleanPath === '/home-gallery' || cleanPath === '/home-loop' || cleanPath === '/home-spiral') {
-    res.writeHead(302, { Location: '/' });
-    res.end();
-    return;
+    // Serve the UGC gallery page
+    filePath = path.join(__dirname, 'public', 'home-gallery.html');
+  } else if (cleanPath === '/ugc') {
+    filePath = path.join(__dirname, 'public', 'home-gallery.html');
+  } else if (cleanPath === '/ad-films' || cleanPath === '/adfilms') {
+    filePath = path.join(__dirname, 'public', 'index.html');
   } else {
     // Check if the requested file exists directly
     const directPath = path.join(__dirname, pathname);
@@ -102,7 +106,25 @@ const server = http.createServer((req, res) => {
       filePath = directPath;
     } else if (fs.existsSync(publicPath) && fs.statSync(publicPath).isFile()) {
       filePath = publicPath;
-    } else if (!path.extname(pathname)) {
+    } else if (pathname.startsWith('/assets/projects/')) {
+      const filename = path.basename(pathname);
+      const candidates = [
+        path.join(__dirname, 'public', 'assets', 'projects', filename),
+        path.join(__dirname, 'assets', 'projects', filename),
+        path.join(__dirname, 'Projects', 'Ad Films', filename),
+        path.join(__dirname, 'Projects', 'Ad Films', 'Thumbnails', filename),
+        path.join(__dirname, 'Projects', 'UGC', filename),
+        path.join(__dirname, 'Projects', 'UGC', 'Thumbnails', filename),
+      ];
+      for (const cand of candidates) {
+        if (fs.existsSync(cand) && fs.statSync(cand).isFile()) {
+          filePath = cand;
+          break;
+        }
+      }
+    }
+    
+    if (!filePath && !path.extname(pathname)) {
       // Check for public/<route>.html
       const namedHtml = path.join(__dirname, 'public', `${cleanPath.slice(1)}.html`);
       if (fs.existsSync(namedHtml) && fs.statSync(namedHtml).isFile()) {
@@ -117,7 +139,31 @@ const server = http.createServer((req, res) => {
   if (filePath && fs.existsSync(filePath)) {
     const ext = path.extname(filePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-    res.writeHead(200, { 'Content-Type': contentType });
+    const stat = fs.statSync(filePath);
+    const fileSize = stat.size;
+    const range = req.headers.range;
+
+    if (range && (ext === '.mp4' || ext === '.webm')) {
+      const parts = range.replace(/bytes=/, "").split("-");
+      const start = parseInt(parts[0], 10);
+      const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+      const chunksize = (end - start) + 1;
+      const fileStream = fs.createReadStream(filePath, { start, end });
+      res.writeHead(206, {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': contentType,
+      });
+      fileStream.pipe(res);
+      return;
+    }
+
+    res.writeHead(200, {
+      'Content-Length': fileSize,
+      'Content-Type': contentType,
+      'Accept-Ranges': 'bytes'
+    });
     fs.createReadStream(filePath).pipe(res);
     return;
   }
