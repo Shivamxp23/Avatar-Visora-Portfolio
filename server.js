@@ -55,6 +55,7 @@ const server = http.createServer((req, res) => {
   }
 
   let filePath = '';
+  const lowerCleanPath = cleanPath.toLowerCase();
 
   // Block removed project pages completely from the entire website
   const REMOVED_ROUTES = [
@@ -78,7 +79,7 @@ const server = http.createServer((req, res) => {
     '/projects/new-damage',
     '/projects/newdamage',
   ];
-  const lowerCleanPath = cleanPath.toLowerCase();
+
   if (REMOVED_PROJECTS.some(p => lowerCleanPath === p || lowerCleanPath.startsWith(p + '/'))) {
     res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end('<!DOCTYPE html><html><head><meta charset="utf-8"><title>404 - Project Not Found</title><meta name="robots" content="noindex"><style>body{background:#000;color:#fff;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0}a{color:#0099ff;text-decoration:none;margin-top:20px;font-weight:bold}</style></head><body><h1>404 - Project Not Found</h1><p>The requested project has been removed.</p><a href="/">Return to Home</a></body></html>');
