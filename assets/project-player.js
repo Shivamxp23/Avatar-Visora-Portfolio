@@ -503,6 +503,14 @@
   window.addEventListener(
     'click',
     function (e) {
+      // 0. If user just dragged or swiped to scroll projects, suppress click
+      if (window.__avLastDragEndTime && performance.now() - window.__avLastDragEndTime < 350) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        return;
+      }
+
       // 1. If clicking close button anywhere (modal or page):
       const closeBtn = e.target.closest('#av-close, .av-close-btn, .close-btn, .close-page-btn, [data-action="close-player"]');
       if (closeBtn) {
@@ -551,20 +559,264 @@
 })();
 
 
-// Universal footer removal safeguard
+// Universal viewframe lock, container cleanup, and project list scroll controller
 (function() {
-  function purgeFooters() {
-    var selectors = 'footer, .framer-l3pwO, [data-framer-name="Footer section"], [data-framer-name="Footer"], .framer-n0lf92-container, .framer-pczdbx-container, .framer-1w9ow87-container';
+  function purgeOverflowContainers() {
+    var selectors = [
+      'footer',
+      '.framer-l3pwO',
+      '[data-framer-name="Footer section"]',
+      '[data-framer-name="Footer"]',
+      '.framer-1f7zz0w-container',
+      '.framer-mfyutm-container',
+      '.framer-n0lf92-container',
+      '.framer-pczdbx-container',
+      '.framer-1w9ow87-container'
+    ].join(', ');
     var found = document.querySelectorAll(selectors);
     for (var i = 0; i < found.length; i++) {
       found[i].remove();
     }
+
+    // Ensure document and main never scroll
+    if (document.documentElement) {
+      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.height = '100dvh';
+      document.documentElement.scrollTop = 0;
+    }
+    if (document.body) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100dvh';
+      document.body.scrollTop = 0;
+    }
+    var main = document.querySelector('main');
+    if (main) {
+      main.style.overflow = 'hidden';
+      main.style.height = '100dvh';
+      main.scrollTop = 0;
+    }
+    var projectsContainer = document.querySelector('.framer-6f8bvo');
+    if (projectsContainer) {
+      projectsContainer.style.overflow = 'hidden';
+      projectsContainer.style.height = '100dvh';
+    }
   }
-  purgeFooters();
+
+  purgeOverflowContainers();
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', purgeFooters);
+    document.addEventListener('DOMContentLoaded', purgeOverflowContainers);
   }
+  window.addEventListener('load', purgeOverflowContainers);
   if (window.MutationObserver) {
-    new MutationObserver(purgeFooters).observe(document.documentElement, { childList: true, subtree: true });
+    new MutationObserver(purgeOverflowContainers).observe(document.documentElement, { childList: true, subtree: true });
   }
+
+  // Strict prevention of any document or window native scroll
+  window.addEventListener('scroll', function() {
+    if (window.scrollY !== 0 || window.scrollX !== 0) {
+      window.scrollTo(0, 0);
+    }
+  }, { passive: false });
+
+  // Capture-phase wheel handler: prevent any default scroll action everywhere,
+  // while ensuring trackpad horizontal movements map to vertical scrolling.
+  window.addEventListener('wheel', function(e) {
+    var openModal = document.querySelector('.av-modal-overlay.av-open');
+    if (openModal) {
+      if (e.target && e.target.closest && e.target.closest('.av-modal-card')) {
+        return; // Allow inner modal scrolling if needed
+      }
+      if (e.cancelable) e.preventDefault();
+      return;
+    }
+
+    // Always block native page scrolling
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+
+    // If horizontal trackpad flick with 0 deltaY, dispatch vertical wheel to drive ticker
+    if (Math.abs(e.deltaX) > 0 && Math.abs(e.deltaY) === 0 && !e.__avMapped) {
+      var synth = new WheelEvent('wheel', {
+        deltaY: e.deltaX,
+        deltaX: 0,
+        bubbles: true,
+        cancelable: true
+      });
+      synth.__avMapped = true;
+      window.dispatchEvent(synth);
+    }
+  }, { passive: false, capture: true });
+
+  // Touch Swipe Support for Project List Scrolling on Mobile & Tablet
+  var touchStartY = 0;
+  var lastTouchY = 0;
+  var lastTouchTime = 0;
+  var touchVelocity = 0;
+  var momentumRaf = null;
+
+  window.addEventListener('touchstart', function(e) {
+    if (document.querySelector('.av-modal-overlay.av-open')) return;
+    if (e.touches && e.touches.length > 0) {
+      touchStartY = e.touches[0].clientY;
+      lastTouchY = touchStartY;
+      lastTouchTime = performance.now();
+      touchVelocity = 0;
+      if (momentumRaf) {
+        cancelAnimationFrame(momentumRaf);
+        momentumRaf = null;
+      }
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchmove', function(e) {
+    if (document.querySelector('.av-modal-overlay.av-open')) return;
+    if (e.touches && e.touches.length > 0) {
+      var currentY = e.touches[0].clientY;
+      var deltaY = lastTouchY - currentY;
+      var totalMove = Math.abs(currentY - touchStartY);
+
+      if (totalMove > 6) {
+        window.__avLastDragEndTime = performance.now();
+      }
+
+      var now = performance.now();
+      var dt = Math.max(1, now - lastTouchTime);
+      touchVelocity = deltaY / dt;
+      lastTouchY = currentY;
+      lastTouchTime = now;
+
+      // Dispatch wheel event to drive Framer's ticker
+      window.dispatchEvent(new WheelEvent('wheel', {
+        deltaY: deltaY * 1.6,
+        bubbles: true,
+        cancelable: true
+      }));
+
+      // Prevent native pull-to-refresh or page bouncing
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+    }
+  }, { passive: false });
+
+  window.addEventListener('touchend', function(e) {
+    if (document.querySelector('.av-modal-overlay.av-open')) return;
+    if (Math.abs(lastTouchY - touchStartY) > 6) {
+      window.__avLastDragEndTime = performance.now();
+    }
+    // Decaying momentum animation
+    var vel = touchVelocity * 15;
+    if (Math.abs(vel) > 1) {
+      var stepMomentum = function() {
+        if (Math.abs(vel) < 0.5) {
+          momentumRaf = null;
+          return;
+        }
+        window.dispatchEvent(new WheelEvent('wheel', {
+          deltaY: vel,
+          bubbles: true,
+          cancelable: true
+        }));
+        vel *= 0.92;
+        momentumRaf = requestAnimationFrame(stepMomentum);
+      };
+      momentumRaf = requestAnimationFrame(stepMomentum);
+    }
+  }, { passive: true });
+
+  // Desktop Mouse Drag-to-Scroll support
+  var isMouseDown = false;
+  var mouseStartY = 0;
+  var lastMouseY = 0;
+  var lastMouseTime = 0;
+  var mouseVelocity = 0;
+  var mouseMomentumRaf = null;
+
+  window.addEventListener('mousedown', function(e) {
+    if (e.button !== 0) return;
+    if (document.querySelector('.av-modal-overlay.av-open')) return;
+    if (e.target.closest('button, input, select, textarea, .av-close-btn')) return;
+
+    isMouseDown = true;
+    mouseStartY = e.clientY;
+    lastMouseY = e.clientY;
+    lastMouseTime = performance.now();
+    mouseVelocity = 0;
+    if (mouseMomentumRaf) {
+      cancelAnimationFrame(mouseMomentumRaf);
+      mouseMomentumRaf = null;
+    }
+  }, { passive: true });
+
+  window.addEventListener('mousemove', function(e) {
+    if (!isMouseDown) return;
+    if (document.querySelector('.av-modal-overlay.av-open')) return;
+
+    var currentY = e.clientY;
+    var deltaY = lastMouseY - currentY;
+    var totalMove = Math.abs(currentY - mouseStartY);
+
+    if (totalMove > 6) {
+      window.__avLastDragEndTime = performance.now();
+      var now = performance.now();
+      var dt = Math.max(1, now - lastMouseTime);
+      mouseVelocity = deltaY / dt;
+      lastMouseY = currentY;
+      lastMouseTime = now;
+
+      window.dispatchEvent(new WheelEvent('wheel', {
+        deltaY: deltaY * 1.6,
+        bubbles: true,
+        cancelable: true
+      }));
+
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+    }
+  }, { passive: false });
+
+  window.addEventListener('mouseup', function(e) {
+    if (!isMouseDown) return;
+    isMouseDown = false;
+    if (Math.abs(e.clientY - mouseStartY) > 6) {
+      window.__avLastDragEndTime = performance.now();
+      var vel = mouseVelocity * 15;
+      if (Math.abs(vel) > 1) {
+        var stepMouseMomentum = function() {
+          if (Math.abs(vel) < 0.5) {
+            mouseMomentumRaf = null;
+            return;
+          }
+          window.dispatchEvent(new WheelEvent('wheel', {
+            deltaY: vel,
+            bubbles: true,
+            cancelable: true
+          }));
+          vel *= 0.92;
+          mouseMomentumRaf = requestAnimationFrame(stepMouseMomentum);
+        };
+        mouseMomentumRaf = requestAnimationFrame(stepMouseMomentum);
+      }
+    }
+  }, { passive: true });
+
+  // Keyboard Navigation: ArrowDown/ArrowUp/PageDown/PageUp scrolls project list
+  window.addEventListener('keydown', function(e) {
+    if (document.querySelector('.av-modal-overlay.av-open')) return;
+    var delta = 0;
+    if (e.key === 'ArrowDown') delta = 140;
+    else if (e.key === 'ArrowUp') delta = -140;
+    else if (e.key === 'PageDown' || e.key === ' ') delta = 450;
+    else if (e.key === 'PageUp') delta = -450;
+    if (delta !== 0) {
+      e.preventDefault();
+      window.dispatchEvent(new WheelEvent('wheel', {
+        deltaY: delta,
+        bubbles: true,
+        cancelable: true
+      }));
+    }
+  });
 })();

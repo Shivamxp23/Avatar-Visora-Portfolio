@@ -6,16 +6,18 @@
   <title>Provogue — Avataar Visora</title>
   <meta name="description" content="Provogue — Ad Films by Avataar Visora">
   <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Fragment+Mono&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #000;
-      color: #fff;
+    html, body {
+      background: #ffffff;
+      color: #000000;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -38,93 +40,33 @@
       margin-bottom: 2rem;
     }
     .back-link {
-      color: #888;
+      color: #666666;
       text-decoration: none;
-      font-size: 0.875rem;
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+      font-family: 'Fragment Mono', 'Geist Mono', monospace;
+      letter-spacing: 0.02em;
       transition: color 0.2s, transform 0.2s;
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
     .back-link:hover {
-      color: #fff;
+      color: #000000;
       transform: translateX(-3px);
     }
     .brand-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #555;
+      color: #000000;
+      text-decoration: none;
+      line-height: 1;
     }
-    .meta {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #ff3366;
-      background: rgba(255, 51, 102, 0.1);
-      border: 1px solid rgba(255, 51, 102, 0.25);
-      padding: 4px 12px;
-      border-radius: 999px;
-      margin-bottom: 0.75rem;
-    }
-    .title {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .year {
-      font-size: 0.875rem;
-      color: #666;
-      font-family: 'JetBrains Mono', monospace;
-      margin-top: 0.5rem;
-    }
-    .video-wrapper {
-      width: 100%;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 255, 255, 0.03);
-      background: #050505;
-      position: relative;
-    }
-    media-controller {
-      width: 100%;
-      display: block;
-      --media-primary-color: #ffffff;
-      --media-secondary-color: #000000;
-      --media-text-color: #ffffff;
-      --media-background-color: #000000;
-      --media-control-hover-background: rgba(255, 255, 255, 0.15);
-      --media-font-family: 'Inter', sans-serif;
-    }
-    video {
-      width: 100%;
-      aspect-ratio: 16/9;
-      display: block;
-      background: #000;
-    }
-    media-control-bar {
-      padding: 8px 12px;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    }
-  
     .close-page-btn {
-      color: #aaa;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #000000;
+      background: #f4f4f6;
+      border: 1px solid rgba(0, 0, 0, 0.1);
       width: 38px;
       height: 38px;
       border-radius: 50%;
@@ -135,9 +77,78 @@
       transition: all 0.2s;
     }
     .close-page-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
+      background: #000000;
+      color: #ffffff;
+      border-color: #000000;
       transform: rotate(90deg) scale(1.05);
+    }
+    .meta {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .badge {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #000000;
+      background: #f0f0f2;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+    .title {
+      font-family: 'Anton', -apple-system, sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: #000000;
+    }
+    .year {
+      font-size: 0.85rem;
+      color: #777777;
+      font-family: 'Fragment Mono', 'Geist Mono', monospace;
+      margin-top: 0.5rem;
+    }
+    .video-wrapper {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.04);
+      background: #000000;
+      position: relative;
+    }
+    media-controller {
+      width: 100%;
+      display: block;
+      --media-primary-color: #ffffff;
+      --media-secondary-color: #000000;
+      --media-text-color: #ffffff;
+      --media-background-color: #000000;
+      --media-control-hover-background: rgba(255, 255, 255, 0.15);
+      --media-font-family: 'Fragment Mono', monospace;
+    }
+    video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: block;
+      background: #000000;
+    }
+    media-control-bar {
+      padding: 8px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    }
+    @media (max-width: 640px) {
+      .top-nav { margin-bottom: 1.25rem; }
+      .meta { margin-bottom: 1.25rem; }
+      .brand-tag { font-size: 1.25rem; }
     }
   </style>
   <script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@4/+esm"></script>
@@ -146,7 +157,7 @@
   <div class="container">
     <div class="top-nav">
       <a href="/" class="back-link">← Back to Portfolio</a>
-      <span class="brand-tag">AVATAAR VISORA</span>
+      <a href="/" class="brand-tag">AVATAAR VISORA</a>
       <a href="/" class="close-page-btn" aria-label="Close and return to landing page">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18">
           <line x1="18" y1="6" x2="6" y2="18"></line>

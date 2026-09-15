@@ -1,17 +1,140 @@
-/* Universal Project Media Player Modal — Avataar Visora */
+/* Universal Project Media Player Modal — Avataar Visora (Editorial Light Design) */
 :root {
-  --av-bg-glass: rgba(14, 14, 18, 0.88);
-  --av-border: rgba(255, 255, 255, 0.12);
-  --av-glow-adfilm: rgba(255, 51, 102, 0.3);
-  --av-glow-ugc: rgba(0, 230, 153, 0.3);
-  --av-glow-jingle: rgba(0, 229, 255, 0.3);
+  --av-bg-glass: rgba(255, 255, 255, 0.96);
+  --av-border: rgba(0, 0, 0, 0.09);
+  --av-text-primary: #000000;
+  --av-text-secondary: #666666;
+  --av-card-bg: #ffffff;
 }
 
+/* Global Viewframe Lock - The entire website fits in the viewport and does NOT scroll */
+html,
+body {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+  overflow: hidden !important;
+  position: fixed !important;
+  inset: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overscroll-behavior: none !important;
+  -webkit-overflow-scrolling: auto !important;
+  background: var(--token-280bd9a0-bf37-41b4-a3c3-9a122b679a65, #ffffff) !important;
+}
+
+#main,
+[data-framer-root],
+.framer-5dGci,
+.framer-JHLJv,
+main,
+.framer-tnt2m9,
+.framer-1yqizxt,
+.framer-10nc5dh,
+.framer-6f8bvo {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Total Removal of Extra Trailing Containers That Cause Scroll Height */
+.framer-1f7zz0w-container,
+.framer-mfyutm-container,
+.framer-n0lf92-container,
+.framer-pczdbx-container,
+.framer-1w9ow87-container,
+[data-framer-name="Footer section"],
+[data-framer-name="Footer"],
+footer,
+div:has(> footer),
+div:has(> .framer-l3pwO) {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+/* Responsive Viewframe Adjustments for Tablet & Mobile */
+@media (max-width: 1199.98px) {
+  .framer-JHLJv.framer-72rtr7,
+  .framer-WFveD.framer-tuko7d {
+    width: 100% !important;
+    max-width: 100vw !important;
+    height: 100% !important;
+    max-height: 100dvh !important;
+    box-sizing: border-box !important;
+  }
+  .framer-6f8bvo {
+    height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .framer-JHLJv.framer-72rtr7,
+  .framer-WFveD.framer-tuko7d {
+    width: 100% !important;
+    max-width: 100vw !important;
+    height: 100% !important;
+    max-height: 100dvh !important;
+  }
+  .framer-6f8bvo {
+    height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  /* Keep intro text cleanly anchored at bottom-left without overflow */
+  .framer-WFveD.framer-v-1428u4a .framer-ss0lsh {
+    position: fixed !important;
+    bottom: 20px !important;
+    top: auto !important;
+    left: 16px !important;
+    right: auto !important;
+    max-width: 250px !important;
+    padding: 10px 14px !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+  }
+  .framer-WFveD.framer-v-1428u4a .framer-ss0lsh p {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    color: #000000 !important;
+    opacity: 0.9 !important;
+    margin: 0 !important;
+  }
+}
+
+/* Modal Overlay */
 .av-modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 999999;
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   display: flex;
@@ -32,10 +155,10 @@
   position: relative;
   width: 100%;
   max-width: 960px;
-  background: var(--av-bg-glass);
-  border: 1px solid var(--av-border);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.95), 0 0 50px rgba(255, 255, 255, 0.04);
+  box-shadow: 0 35px 90px -15px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   transform: scale(0.95) translateY(10px);
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
@@ -51,72 +174,75 @@
   transform: scale(1) translateY(0);
 }
 
-/* Header */
+/* Modal Header */
 .av-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
 }
 
 .av-header-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .av-badge {
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  padding: 4px 10px;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  line-height: 1;
 }
 
 .av-badge-adfilm {
-  color: #ff3366;
-  background: rgba(255, 51, 102, 0.12);
-  border: 1px solid rgba(255, 51, 102, 0.3);
+  color: #ffffff;
+  background: #000000;
+  border: 1px solid #000000;
 }
 
 .av-badge-ugc {
-  color: #00e699;
-  background: rgba(0, 230, 153, 0.12);
-  border: 1px solid rgba(0, 230, 153, 0.3);
+  color: #000000;
+  background: #f0f0f2;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .av-badge-jingle {
-  color: #00e5ff;
-  background: rgba(0, 229, 255, 0.12);
-  border: 1px solid rgba(0, 229, 255, 0.3);
+  color: #000000;
+  background: #f0f0f2;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .av-title {
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #fff;
+  font-family: 'Anton', -apple-system, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #000000;
   margin: 0;
+  line-height: 1.1;
 }
 
 .av-year {
-  font-family: monospace, 'Inter';
+  font-family: 'Fragment Mono', 'Geist Mono', monospace;
   font-size: 0.8rem;
-  color: #666;
+  color: #777777;
 }
 
 .av-close-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #aaa;
+  background: #f4f4f6;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #222;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -129,8 +255,9 @@
 }
 
 .av-close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
   transform: rotate(90deg) scale(1.05);
 }
 
@@ -145,7 +272,7 @@
 .av-modal-body {
   position: relative;
   width: 100%;
-  background: #000;
+  background: #fbfbfb;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,7 +298,7 @@
 .av-audio-container {
   width: 100%;
   padding: 2.25rem 2rem 2rem;
-  background: linear-gradient(180deg, rgba(20, 20, 24, 0.95) 0%, rgba(10, 10, 12, 1) 100%);
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -180,8 +307,8 @@
 .av-audio-waveform {
   width: 100%;
   height: 90px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f6f6f8;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   margin-bottom: 1.75rem;
 }
@@ -199,19 +326,19 @@
   height: 6px;
   -webkit-appearance: none;
   appearance: none;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 999px;
   outline: none;
   cursor: pointer;
-  accent-color: #00e5ff;
+  accent-color: #000000;
 }
 
 .av-time-row {
   display: flex;
   justify-content: space-between;
-  font-family: monospace, sans-serif;
+  font-family: 'Fragment Mono', 'Geist Mono', monospace;
   font-size: 0.75rem;
-  color: #777;
+  color: #777777;
 }
 
 .av-audio-controls {
@@ -226,24 +353,24 @@
   height: 58px;
   border-radius: 50%;
   border: none;
-  background: #ffffff;
-  color: #000000;
+  background: #000000;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 25px rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.15s, background-color 0.2s;
 }
 
 .av-play-btn:hover {
   transform: scale(1.08);
-  background: #00e5ff;
+  background: #222222;
 }
 
 .av-play-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   fill: currentColor;
 }
 
@@ -252,9 +379,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #666;
+  color: #666666;
   font-size: 0.75rem;
-  font-family: monospace, sans-serif;
+  font-family: 'Fragment Mono', 'Geist Mono', monospace;
 }
 
 .av-vol-slider {
@@ -262,38 +389,39 @@
   height: 4px;
   -webkit-appearance: none;
   appearance: none;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 999px;
-  accent-color: #fff;
+  accent-color: #000000;
   cursor: pointer;
 }
 
 /* Footer / Direct Link */
 .av-modal-footer {
   padding: 0.85rem 1.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.015);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fafafa;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .av-project-route {
-  font-family: monospace, sans-serif;
+  font-family: 'Fragment Mono', 'Geist Mono', monospace;
   font-size: 0.75rem;
-  color: #666;
+  color: #666666;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .av-project-route:hover {
-  color: #fff;
+  color: #000000;
+  text-decoration: underline;
 }
 
 .av-hint {
   font-size: 0.75rem;
-  color: #555;
-  font-family: monospace, sans-serif;
+  color: #888888;
+  font-family: 'Fragment Mono', 'Geist Mono', monospace;
 }
 
 @media (max-width: 640px) {
@@ -301,7 +429,7 @@
     padding: 1rem 1.25rem;
   }
   .av-title {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   .av-audio-container {
     padding: 1.5rem 1.25rem 1.25rem;
@@ -325,27 +453,4 @@
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-}
-
-
-/* Total Footer Removal across Entire Website */
-footer,
-.framer-l3pwO,
-[data-framer-name="Footer section"],
-[data-framer-name="Footer"],
-.framer-n0lf92-container,
-.framer-pczdbx-container,
-.framer-1w9ow87-container,
-div:has(> footer),
-div:has(> .framer-l3pwO) {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
 }
