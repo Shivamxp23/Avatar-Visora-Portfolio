@@ -26,8 +26,8 @@ Double-click `start.bat` on Windows.
 The local server starts on **[http://localhost:3000](http://localhost:3000)**.
 
 ## Features
-- **SPA Routing**: Full support for client-side routing (`/`, `/home-gallery`, `/home-loop`, `/home-spiral`, `/studio`, `/insights`, `/contact`, `/projects/*`).
+- **SPA Routing**: Full support for routing (`/`, `/home-gallery`, `/ad-films`, `/projects/*`).
 - **Interactive Themes**: Instant Dark / Light / System theme toggles.
-- **Multiple Layout Views**: List view, Gallery view, Loop view, Spiral view.
+- **Multiple Layout Views**: List view, Gallery view.
 - **Project Detail Pages**: High-resolution showcase cards and individual case study presentations.
 - **Zero Heavy Dependencies**: Runs directly with modern Node.js using built-in standard libraries.

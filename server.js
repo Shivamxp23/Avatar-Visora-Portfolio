@@ -50,42 +50,10 @@ const server = http.createServer((req, res) => {
   let filePath = '';
   const lowerCleanPath = cleanPath.toLowerCase();
 
-  // Block removed project pages completely from the entire website
-  const REMOVED_ROUTES = [
-    '/studio',
-    '/insights',
-    '/contact',
-    '/legal/privacy-policy',
-    '/legal/terms-of-service',
-    '/404',
-  ];
-  if (REMOVED_ROUTES.some(r => lowerCleanPath === r || lowerCleanPath.startsWith(r + '/'))) {
-    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end('<!DOCTYPE html><html><head><meta charset="utf-8"><title>404 - Page Not Found</title></head><body style="background:#000;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;font-family:sans-serif"><h1>404 - Page Not Found</h1></body></html>');
-    return;
-  }
-
-  const REMOVED_PROJECTS = [
-    '/projects/studio-24',
-    '/projects/studio24',
-    '/projects/blackline',
-    '/projects/new-damage',
-    '/projects/newdamage',
-  ];
-
-  if (REMOVED_PROJECTS.some(p => lowerCleanPath === p || lowerCleanPath.startsWith(p + '/'))) {
-    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end('<!DOCTYPE html><html><head><meta charset="utf-8"><title>404 - Project Not Found</title><meta name="robots" content="noindex"><style>body{background:#000;color:#fff;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0}a{color:#0099ff;text-decoration:none;margin-top:20px;font-weight:bold}</style></head><body><h1>404 - Project Not Found</h1><p>The requested project has been removed.</p><a href="/">Return to Home</a></body></html>');
-    return;
-  }
-
   // Explicit route matching
   if (cleanPath === '/' || cleanPath === '/index.html') {
     filePath = path.join(__dirname, 'public', 'index.html');
-  } else if (cleanPath === '/home-gallery' || cleanPath === '/home-loop' || cleanPath === '/home-spiral') {
-    // Serve the UGC gallery page
-    filePath = path.join(__dirname, 'public', 'home-gallery.html');
-  } else if (cleanPath === '/ugc') {
+  } else if (cleanPath === '/home-gallery' || cleanPath === '/ugc') {
     filePath = path.join(__dirname, 'public', 'home-gallery.html');
   } else if (cleanPath === '/ad-films' || cleanPath === '/adfilms') {
     filePath = path.join(__dirname, 'public', 'index.html');
@@ -95,8 +63,6 @@ const server = http.createServer((req, res) => {
     const projectHtml = path.join(__dirname, 'public', 'projects', `${slug}.html`);
     if (fs.existsSync(projectHtml) && fs.statSync(projectHtml).isFile()) {
       filePath = projectHtml;
-    } else {
-      filePath = path.join(__dirname, 'public', 'index.html');
     }
   } else {
     // Check if the requested file exists directly
@@ -150,9 +116,6 @@ const server = http.createServer((req, res) => {
       const namedHtml = path.join(__dirname, 'public', `${cleanPath.slice(1)}.html`);
       if (fs.existsSync(namedHtml) && fs.statSync(namedHtml).isFile()) {
         filePath = namedHtml;
-      } else {
-        // SPA route fallback
-        filePath = path.join(__dirname, 'public', 'index.html');
       }
     }
   }
@@ -231,8 +194,8 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  res.writeHead(404, { 'Content-Type': 'text/plain' });
-  res.end('404 Not Found');
+  res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+  res.end('<!DOCTYPE html><html><head><meta charset="utf-8"><title>404 - Page Not Found</title></head><body style="background:#000;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;font-family:sans-serif"><h1>404 - Page Not Found</h1></body></html>');
 });
 
 server.listen(PORT, () => {

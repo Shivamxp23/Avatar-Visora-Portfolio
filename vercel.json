@@ -78,51 +78,11 @@
   "rewrites": [
     {
       "source": "/home-gallery",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/home-loop",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/home-spiral",
-      "destination": "/index.html"
+      "destination": "/home-gallery.html"
     },
     {
       "source": "/projects/:slug",
       "destination": "/projects/:slug.html"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/studio",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/insights",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/contact",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/legal/privacy-policy",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/legal/terms-of-service",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/404",
-      "destination": "/",
-      "permanent": false
     }
   ]
 }
